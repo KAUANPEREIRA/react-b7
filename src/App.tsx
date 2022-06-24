@@ -15,6 +15,7 @@ function App() {
     setName(e.target.value)
     setLastName(e.target.value)
     setAge(e.target.value)
+    
   }
 
   
