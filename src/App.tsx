@@ -8,9 +8,13 @@ import './App.css';
 function App() {
 
   const [name, setName] = useState('')
+  const [lastName,setLastName]= useState('')
+  const [age,setAge] = useState(0)
 
   const handleName =(e:React.ChangeEvent<HTMLInputElement>)=>{
     setName(e.target.value)
+    setLastName(e.target.value)
+    setAge(e.target.value)
   }
 
   
@@ -18,7 +22,7 @@ function App() {
   return (
     <div className="App">
       nome:
-      <input type="text" value={name} onChange={handleName}/>
+      <input type="text" value={name} onChange={handleName} placeholder="digite seu nome"/>
       <hr></hr>
       Seu nome é: {name}
       
