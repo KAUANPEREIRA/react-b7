@@ -1,20 +1,27 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import { Photo } from './components/Photo/Photo';
+import { useState } from 'react';
 
 import './App.css';
 
 function App() {
 
-  const ola =()=>{
-    alert('Um dia vai chegar o dia')
+  const [name, setName] = useState('')
+
+  const handleName =(e:React.ChangeEvent<HTMLInputElement>)=>{
+    setName(e.target.value)
   }
+
+  
+
   return (
     <div className="App">
-      <Header title="Estudando React Header"/>
-      <h1></h1>
-      <Photo url="http://www.google.com.br/google.jpg" legend='um dia vai chegar o dia' />
-      <button onClick={ola}>Clique Aqui</button>
+      nome:
+      <input type="text" value={name} onChange={handleName}/>
+      <hr></hr>
+      Seu nome é: {name}
+      
     </div>
   );
 }
