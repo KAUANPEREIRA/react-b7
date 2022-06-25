@@ -24,6 +24,18 @@ function App() {
     setAge(e.target.value)
   }
   
+  const [n, setN] = useState(0)
+
+  const soma =()=>{
+    setN(n+2)
+  }
+
+  const subtrair =()=>{
+    if(n>0){
+      setN(n-1)
+    }
+  }
+
 
 
   
@@ -35,9 +47,17 @@ function App() {
       <input type="text" value={ lastName } onChange={handleLastName} placeholder="digite seu Sobrenome"/>
       <input type="text" value={ age } onChange={handleAge} placeholder="digite sua idade"/>
       <hr></hr>
-      Seu nome é: {name } 
+      Seu nome é : {name } <br></br> 
       { lastName } 
-      e sua idade é { age} anos
+         sua idade é { age} anos
+      <hr></hr>
+      <h2>Contador</h2>
+
+      <button onClick={soma}>+</button>
+            {n}
+      <button onClick={subtrair}>-</button>
+
+
       
     </div>
   );
