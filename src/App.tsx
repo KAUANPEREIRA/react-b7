@@ -7,6 +7,7 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [show,setShow]=useState(false)
 
   const [name, setName] = useState('')
   const [lastName,setLastName]= useState('')
@@ -46,8 +47,15 @@ let amigos =[
   'dopicles'
 ]
 
+  const n1 = 5
 
-
+const handleView =()=>{
+ if(show){
+  setShow(false)
+ }else{
+  setShow(true)
+ }
+}
   return (
     <div className="App">
       <Header/>
@@ -74,8 +82,11 @@ let amigos =[
           <li key={index}>{item}</li>
         ))}
       </ul>
+      <hr></hr>
+      <button onClick={handleView}>Mostrar</button>
 
-
+      {show===true?<div>bla bla bla</div>:''}
+        
       
     </div>
   );
