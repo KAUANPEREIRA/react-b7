@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header/Header';
 import { Photo } from './components/Photo/Photo';
+import { Botao } from './components/Botao/Botao';
 import { useState } from 'react';
 
 import './App.css';
@@ -36,12 +37,20 @@ function App() {
     }
   }
 
+let amigos =[
+  'geraldo',
+  'Cristiano',
+  'Hugo',
+  'Alemao',
+  'willian',
+  'dopicles'
+]
 
 
-  
 
   return (
     <div className="App">
+      <Header/>
       nome:
       <input type="text" value={name } onChange={handleName} placeholder="digite seu nome"/>
       <input type="text" value={ lastName } onChange={handleLastName} placeholder="digite seu Sobrenome"/>
@@ -56,6 +65,15 @@ function App() {
       <button onClick={soma}>+</button>
             {n}
       <button onClick={subtrair}>-</button>
+      <hr></hr>
+      <Botao text="um dia " />
+      <hr></hr>
+      <h4>Alguns colegas</h4>
+      <ul>
+        {amigos.map((item,index)=>(
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
 
 
       
