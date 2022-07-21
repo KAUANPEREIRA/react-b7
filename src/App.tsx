@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import Header from './components/Header/Header';
 import { Photo } from './components/Photo/Photo';
 import { Botao } from './components/Botao/Botao';
@@ -9,29 +9,17 @@ import './App.css';
 function App() {
   const [show,setShow]=useState(false)
 
-  const [name, setName] = useState('')
-  const [lastName,setLastName]= useState('')
-  const [age,setAge] = useState('')
-
-  const handleName =(e:React.ChangeEvent<HTMLInputElement>)=>{
-    setName(e.target.value)
-
-  }
-
-  const handleLastName =(e:React.ChangeEvent<HTMLInputElement>)=>{
-    setLastName(e.target.value)
-  }
-
-  const handleAge =(e:React.ChangeEvent<HTMLInputElement>)=>{
-    setAge(e.target.value)
-  }
   
+  {/*componente nome aula ciclo de vida */}
+  const [nome,setNome] = useState<string>('')
+  const [sobrenome,setSobrenome]  = useState<string>('')
+  const [nomeCompleto,setNomeCompleto] = useState<string>('')
+  
+  {/* contador */}
   const [n, setN] = useState(0)
-
   const soma =()=>{
-    setN(n+2)
+    setN(n+1)
   }
-
   const subtrair =()=>{
     if(n>0){
       setN(n-1)
@@ -47,7 +35,7 @@ let amigos =[
   'dopicles'
 ]
 
-  const n1 = 5
+ const n1 = 5
 
 const handleView =()=>{
  if(show){
@@ -56,20 +44,24 @@ const handleView =()=>{
   setShow(true)
  }
 }
+
+const handleNome =(e:ChangeEvent<HTMLInputElement>)=>{
+  setNome(e.target.value)
+}
+
+const handleSobrenome =(e:ChangeEvent<HTMLInputElement>)=>{
+  setSobrenome(e.target.value)
+}
+
+useEffect(()=>{
+ setNomeCompleto(`${nome} ${sobrenome}`)
+},[nome,sobrenome])
+
+console.log('MEU NOME',nome)
   return (
     <div className="App">
       <Header/>
-      nome:
-      <input type="text" value={name } onChange={handleName} placeholder="digite seu nome"/>
-      <input type="text" value={ lastName } onChange={handleLastName} placeholder="digite seu Sobrenome"/>
-      <input type="text" value={ age } onChange={handleAge} placeholder="digite sua idade"/>
-      <hr></hr>
-      Seu nome é : {name } <br></br> 
-      { lastName } 
-         sua idade é { age} anos
-      <hr></hr>
       <h2>Contador</h2>
-
       <button onClick={soma}>+</button>
             {n}
       <button onClick={subtrair}>-</button>
@@ -84,10 +76,11 @@ const handleView =()=>{
       </ul>
       <hr></hr>
       <button onClick={handleView}>Mostrar</button>
-
       {show===true?<div>bla bla bla</div>:''}
-        
-      
+      <h1>INPUTS CAMPO AULAS COM USEEFCT</h1>
+      <input type="text" placeholder='digite seu nome' value={nome} onChange={handleNome}/>
+      <input type="text" placeholder='digite seu sobrenome' value={sobrenome} onChange={handleSobrenome}/>
+      <p>Nome completo :{nomeCompleto?nomeCompleto:''}</p>
     </div>
   );
 }
