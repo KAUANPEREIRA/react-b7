@@ -64,7 +64,6 @@ useEffect(()=>{
  type Props ={
   titulo:string
   avatar:string
-
 }
 
 const [dadosApi,setDadosApi]= useState<Props[]>([]) 
