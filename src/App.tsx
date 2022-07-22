@@ -3,8 +3,10 @@ import Header from './components/Header/Header';
 import { Photo } from './components/Photo/Photo';
 import { Botao } from './components/Botao/Botao';
 import { useState } from 'react';
+import axios from 'axios';
 
 import './App.css';
+import { isTemplateExpression } from 'typescript';
 
 function App() {
   const [show,setShow]=useState(false)
@@ -57,6 +59,30 @@ useEffect(()=>{
  setNomeCompleto(`${nome} ${sobrenome}`)
 },[nome,sobrenome])
 
+{/*get simples explicando que vai receber um array de props*/}
+
+ type Props ={
+  titulo:string
+  avatar:string
+
+}
+
+const [dadosApi,setDadosApi]= useState<Props[]>([]) 
+
+  useEffect(()=>{
+  axios.get(`https://api.b7web.com.br/cinema/`)
+  .then((response)=>{
+    setDadosApi(response.data)
+  })
+  .catch(()=>{
+    console.log('erro na requisição')
+  })
+  
+},[])
+
+console.log('data appi',dadosApi)
+
+
 console.log('MEU NOME',nome)
   return (
     <div className="App">
@@ -81,7 +107,23 @@ console.log('MEU NOME',nome)
       <input type="text" placeholder='digite seu nome' value={nome} onChange={handleNome}/>
       <input type="text" placeholder='digite seu sobrenome' value={sobrenome} onChange={handleSobrenome}/>
       <p>Nome completo :{nomeCompleto?nomeCompleto:''}</p>
+      <h1>AULA DE GET SIMPLES</h1>
+      {/* <ul>
+        {dadosApi.map((item,index)=>(
+          <li key={index}>{item}</li>
+        ))}
+      </ul> */}
+
+      <ul>
+        {dadosApi.map((item,index)=>{
+          return(
+            <li key={index}>{item?.titulo}</li>
+          )
+        })}
+      </ul>
     </div>
+
+    
   );
 }
 
