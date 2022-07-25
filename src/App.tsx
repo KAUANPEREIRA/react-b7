@@ -59,7 +59,7 @@ useEffect(()=>{
  setNomeCompleto(`${nome} ${sobrenome}`)
 },[nome,sobrenome])
 
-{/*get simples explicando que vai receber um array de props*/}
+{/*get simples explicando que vai receber um array de props aula get simples*/}
 
  type Props ={
   titulo:string
