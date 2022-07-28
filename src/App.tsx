@@ -100,10 +100,6 @@ useEffect(()=>{
   getPosts()
 },[])
 
-console.log('meus 100 posts',post)
-
-
-console.log('MEU NOME',nome)
   return (
     <div className="App">
       <Header/>
