@@ -66,6 +66,7 @@ useEffect(()=>{
   avatar:string
 }
 
+
 const [dadosApi,setDadosApi]= useState<Props[]>([]) 
 
   useEffect(()=>{
@@ -80,6 +81,26 @@ const [dadosApi,setDadosApi]= useState<Props[]>([])
 },[])
 
 console.log('data appi',dadosApi)
+
+{/* modelo requisicao assincrona  com tipagem*/}
+
+type JsonProps ={
+  userId:number
+  id:number
+  title:string
+  body:string
+}
+
+const [post, setPosts] = useState<JsonProps[]>([])
+useEffect(()=>{
+  const getPosts = async () =>{
+    const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/`)
+    .then(res =>setPosts(res.data))
+  }
+  getPosts()
+},[])
+
+console.log('meus 100 posts',post)
 
 
 console.log('MEU NOME',nome)
@@ -112,14 +133,20 @@ console.log('MEU NOME',nome)
           <li key={index}>{item}</li>
         ))}
       </ul> */}
-
+{/* 
       <ul>
         {dadosApi.map((item,index)=>{
           return(
             <li key={index}>{item?.titulo}</li>
           )
         })}
-      </ul>
+      </ul> */}
+
+      <h2>Json Placeholder</h2>
+
+
+
+
     </div>
 
     
