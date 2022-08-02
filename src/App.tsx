@@ -100,6 +100,20 @@ useEffect(()=>{
   getPosts()
 },[])
 
+
+useEffect(()=>{
+  const postPosts = async()=>{
+    const response = await axios.post("https://jsonplaceholder.typicode.com/posts/")
+    .then(()=>{
+        console.log('postagem concluida com sucesso')
+    })
+    .catch((erro)=>{
+        console.log(erro.message)
+    })
+  }
+  postPosts()
+})
+
   return (
     <div className="App">
       <Header/>
