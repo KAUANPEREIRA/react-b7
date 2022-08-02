@@ -11,6 +11,39 @@ import { isTemplateExpression } from 'typescript';
 function App() {
   const [show,setShow]=useState(false)
 
+  {/* variaveis utilizadas no post */}
+
+  const [postTitulo,setPostTitulo] = useState('')
+  const [postTexto, setPostTexto] = useState('')
+
+  const handlePostTitle = (e:ChangeEvent<HTMLInputElement>) =>{
+      setPostTitulo(e.target.value)
+  }
+
+  const handlePostTexto = (e:ChangeEvent<HTMLTextAreaElement>) =>{
+    setPostTexto(e.target.value)
+}
+
+
+const handleAdd = async ()=>{
+  const data ={
+    title:postTitulo,
+    body :postTexto
+
+  }
+  console.log('irei enviar data',data)
+  let response = await axios.post(`https://jsonplaceholder.typicode.com/posts/`,data)
+  .then((response)=>{
+    console.log(response.status)
+    console.log('voce enviou ..',data)
+  })
+  .catch((erro)=>{
+    console.log(erro.message)
+  })
+
+}
+
+
   
   {/*componente nome aula ciclo de vida */}
   const [nome,setNome] = useState<string>('')
@@ -91,14 +124,7 @@ type JsonProps ={
   body:string
 }
 
-const [post, setPosts] = useState<JsonProps[]>([])
-useEffect(()=>{
-  const getPosts = async () =>{
-    const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/`)
-    .then(res =>setPosts(res.data))
-  }
-  getPosts()
-},[])
+
 
 
 useEffect(()=>{
@@ -153,6 +179,30 @@ useEffect(()=>{
       </ul> */}
 
       <h2>Json Placeholder</h2>
+      <h2>Fazendo Post de um campo</h2>
+      <fieldset>
+        <legend>Adicionar post</legend>
+
+        <input type="text" 
+        placeholder='digite um titulo' 
+        value={postTitulo}
+        onChange={handlePostTitle}
+        
+        />
+
+        <br></br>
+        <textarea 
+        
+        value={postTexto}
+        onChange={handlePostTexto}
+        
+        >
+
+         
+
+        </textarea>
+        <button onClick={handleAdd}>Adicionar</button>
+      </fieldset>
 
 
 
